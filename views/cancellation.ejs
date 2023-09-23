@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>DSA </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!--myu style code-->
+  <style>
+    /* *{
+      border: 1px solid red;
+    } */
+     
+      .term-para{
+        color: navy; 
+        font-weight: lighter;
+        text-align: justify;
+      }
+      .term-heading{
+        color: navy;
+        font-size: 1.4rem;
+      }
+    
+  </style>
+</head>
+<body>
+
+
+ <!-- Header Start -->
+ <% if (user) { %>
+    <%- include('navbarlogout.ejs') %>
+  <% } else { %>
+    <%- include('navbar.ejs') %>
+  <% } %>
+<!-- Header End -->
+<!-- Header End -->
+    
+        
+    <section class="d-flex flex-column p-md-5">
+        <div class="container">
+          <div class="row">
+            <div class="newy col-8 col-lg-12 " class="imi" style="display:flex ;justify-content: center; margin-bottom: 0%;">
+              <img src="https://res.cloudinary.com/dxujeg5en/image/upload/v1694517858/DSA_Logo_New_udtixz.png" alt="" height="150px%" width="150px"style="margin-top: ;"/>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-lg-12">
+              <h5 style="color: red">Disclaimer :</h5>
+              <p>REFUND & CANCELLATION POLICY</p>
+              <div>
+                <h6 class="term-heading">Refund and Cancellation Policy given below.</h6>
+                <p class="term-para">
+                    Our focus is complete customer satisfaction. In the event, if you are displeased with the services provided, we will refund back the money, provided the reasons are genuine and proved after investigation. Please read the fine prints of each deal before buying it, it provides all the details about the services or the product you purchase.
+                    In case of dissatisfaction from our services, clients have the liberty to cancel their projects and request a refund from us. Our Policy for the cancellation and refund will be as follows:
+                    
+                </p>
+              </div>
+              <h6 class="term-heading">Cancellation Policy</h6>
+              <p class="term-para">
+                For Cancellations please contact the us via contact us link.
+                Requests received later than 7 business days prior to the end of the current service period will be treated as cancellation of services for the next service period.
+              </p>
+            
+           
+            <h6 class="term-heading">Refund Policy</h6>
+            <!-- <p style="color: navy; font-weight: bold;">(A)Security Rules</p> -->
+            <p class="term-para">
+                We will try our best to create the suitable design concepts for our clients.
+                In case any client is not completely satisfied with our products we can provide a refund.
+            </p>
+            <h6 class="term-heading">LINKS TO THE OTHER SITES</h6>
+            <!-- <p style="color: navy; font-weight: bold;">(B) General Rules</p> -->
+            <p class="term-para">
+                If paid by credit card, refunds will be issued to the original credit card provided at the time of purchase and in case of payment gateway name payments refund will be made to the same account.
+            </p>
+            </div>
+          </div>
+        </div>
+        
+    </section>
+
+    <!-- Footer Start -->
+    <%- include('footer.ejs') %>
+  <!-- Footer End -->
+
+  
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+
+</body>
+</html>

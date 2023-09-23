@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DSA </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <!--myu style code-->
+    <style>
+        /* *{
+      border: 1px solid red;
+    } */
+       
+
+        .term-para {
+            color: navy;
+            font-weight: lighter;
+            text-align: justify;
+        }
+
+        .term-heading {
+            color: navy;
+            font-size: 1.4rem;
+        }
+
+       
+
+
+        @media (max-width:458px) {
+            .image-fluid {
+                width: 13vw
+            }
+        }
+
+        .bg-image-vertical {
+            position: relative;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: auto 100%;
+        }
+
+        @media (max-width: 767px) {
+            .col-md-9 {
+                display: none;
+            }
+            #sendOTPButton{
+                width:16% !important;
+            }
+        }
+
+        @media (max-width:600px){
+            #sendOTPButton{
+                padding:2.5% 0.3%;
+                font-size:0.68rem !important;
+            }
+        }
+
+        @media (max-width:430px){
+            .image-fluid {
+                width: 13vw
+            }
+            #sendOTPButton{
+                padding:3.6% 0.3% !important;
+                font-size:0.58rem !important;
+            }
+        }
+
+        .bg-image-vertical {
+            position: relative;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: auto 100%;
+        }
+
+        @media (max-width: 767px) {
+            .col-md-9 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Header Start -->
+    
+                <%- include('navbar.ejs') %>
+                        <!-- <section class="vh-90" style="background-color: #eee;"> -->
+                        <div class="container h-90">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-lg-12 col-xl-11">
+                                    <div class="card " style="border-radius: 25px;">
+                                        <div class="card-body p-md-5">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                                                    <form onsubmit="return formValidation()" action="/signup" method="post" class="mx-1 mx-md-4">
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                                <label class="form-label" for="form3Example1c">Your
+                                                                    Name</label>
+                                                                <input type="text" name="firstname" id="form3Example1c"
+                                                                    class="form-control"  oninput="clearError('nameError')"/>
+                                                                <span style="color:red" id="nameError" class="error"></span><br>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                                <label class="form-label" for="form3Example3c">Your
+                                                                    Email</label>
+                                                                <input type="email" id="form3Example3c" name="username"
+                                                                    class="form-control" oninput="clearError('emailError')"/>
+                                                                    <span style="color:red" id="emailError" class="error"></span><br>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                                <label class="form-label"
+                                                                for="form3Example4c">Password</label>
+                                                                <input name="password" type="password"
+                                                                    id="form3Example4c" class="form-control" oninput="clearError('passwordError')"/>
+                                                                    <span style="color:red" id="passwordError" class="error"></span><br>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                           
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                                <label class="form-label" for="form3Example4cd">Repeat
+                                                                    your password</label>
+                                                                <input type="password" id="form3Example4cd"
+                                                                    class="form-control" oninput="clearError('confirmPasswordError')"/>
+                                                                    <span style="color:red" id="confirmPasswordError" class="error"></span><br>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
+                                                                <label class="form-label" for="form3Example3c">Phone
+                                                                    number </label>
+                                                                <input type="text" name="phone_number" id="form3Example5c"
+                                                                    class="form-control" oninput="clearError('phoneError')"/>
+                                                                    <span style="color:red" id="phoneError" class="error"></span><br>
+                                                                
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        <div class="form-check d-flex justify-content-center mb-5">
+                                                            <input class="form-check-input me-2" type="checkbox"
+                                                                value="" id="form2Example3c" />
+                                                            <label class="form-check-label" for="form2Example3">
+                                                                I agree all statements in <a href="/terms">Terms of
+                                                                    service</a>
+                                                            </label>
+                                                        </div>
+                                                        <!-- Add this section inside your form -->
+                                                        <div class="d-flex flex-row align-items-center mb-4">
+                                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                            <button type="submit" class="btn btn-primary"  id="sendOTPButton">Send OTP</button>
+                                                            <div class="form-outline flex-fill mb-0">
+                                                                <input type="text" id="otpcheck" name="otpcheck" placeholder="Enter OTP here" class="form-control"  onkeyup="checkOtpLength()"/>
+                                                            </div>    
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                            <button id="register" type="submit"
+                                                                class="btn btn-primary disabled">Register</button>
+                                                        </div>
+
+                                                    </form>
+
+                                                </div>
+                                                <div
+                                                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                                    <img src="/img/DSA Login Page Image.png" class="img-fluid"
+                                                        alt="Sample image">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Footer Start -->
+                        <%- include('footer.ejs') %>
+                            <!-- Footer End -->
+
+
+                            <!-- JavaScript Libraries -->
+                            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                            <script
+                                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+                            <script src="lib/wow/wow.min.js"></script>
+                            <script src="lib/easing/easing.min.js"></script>
+                            <script src="lib/waypoints/waypoints.min.js"></script>
+                            <script src="lib/counterup/counterup.min.js"></script>
+                            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+                            <script src="lib/tempusdominus/js/moment.min.js"></script>
+                            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+                            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+                            <!-- Template Javascript -->
+                            <script src="js/main.js"></script>
+
+                                                                                    <!-- JavaScript for sending OTP via AJAX -->
+<script>
+    let otpFromBackend;
+    document.getElementById('sendOTPButton').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+    
+        const emailInput = document.getElementById('form3Example3c').value;
+        console.log(emailInput)
+        // Make an HTTP POST request to the server
+        fetch('/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: emailInput })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Server response:', data);
+            otpFromBackend=data.generatedOTP;
+            // Handle the server response here
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    
+    //validating otp code
+    function checkOtpLength() {
+                var otpInput = document.getElementById('otpcheck');
+                if (otpInput.value.length === 6) {
+                    // Call your function here
+                    // For example, you can call a function named "handleSixDigits"
+                    validateOtp();
+                }
+            }
+    function validateOtp(){
+        console.log("from validate function",otpFromBackend)
+        var otpCheck=document.getElementById("otpcheck").value
+        if(otpCheck!=otpFromBackend){
+            alert("OTP miss match... Please Check once again")
+            return false
+        }
+        else{
+            alert("matches")
+            document.querySelector("#register").classList.remove("disabled")
+        }
+        return true
+    }
+    
+    
+    function clearError(errorId) {
+        var errorElement = document.getElementById(errorId);
+        errorElement.innerText = "";
+    }
+    
+    function formValidation() {
+        var name = document.getElementById("form3Example1c").value;
+        var email = document.getElementById("form3Example3c").value;
+        var password = document.getElementById("form3Example4c").value;
+        var confirmPassword = document.getElementById("form3Example4cd").value;
+        var phone_number = document.getElementById("form3Example5c").value;
+    
+        // Regular expressions for validation
+        var nameRegex = /^[A-Za-z\s]+$/;
+        var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,8}$/;
+        var phoneRegex = /^\d{10}$/;
+        // Clear previous error messages
+        document.getElementById("nameError").innerText = "";
+        document.getElementById("emailError").innerText = "";
+        document.getElementById("passwordError").innerText = "";
+        document.getElementById("confirmPasswordError").innerText = "";
+        document.getElementById("phoneError").innerText = "";
+    
+        // Validate name
+        if (!name.match(nameRegex)) {
+            document.getElementById("nameError").innerText = "Please enter a valid name.";
+            return false;
+        }
+    
+        // Validate email
+        if (!email.match(emailRegex)) {
+            document.getElementById("emailError").innerText = "Please enter a valid email address.";
+            return false;
+        }
+    
+        // Validate password
+        if (!password.match(passwordRegex)) {
+            document.getElementById("passwordError").innerText = "Please enter a valid password (at least 6 characters, including one uppercase letter, one lowercase letter, and one digit).";
+            return false;
+        }
+    
+        // Validate confirmPassword
+        if (password !== confirmPassword) {
+            document.getElementById("confirmPasswordError").innerText = "Passwords do not match.";
+            return false;
+        }
+    
+        // Validate phone_number
+        if (!phone_number.match(phoneRegex)) {
+            document.getElementById("phoneError").innerText = "Please enter a valid phone number (10 digits).";
+            return false;
+        }
+        return true;
+    }
+    
+    </script>
+</body>
+</html>

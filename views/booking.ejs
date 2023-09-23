@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sports Game </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="./css/style.css">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <!-- Custom Code -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link href=
+'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' 
+          rel='stylesheet'>
+
+
+    <!--myu style code-->
+    <style>
+       
+        body{
+           background-image:linear-gradient(beige,bisque,beige) ;
+        }
+
+        
+
+        .ground-highlight-images img {
+            width: 30vw;
+            min-height: 45vh;
+        }
+
+
+
+        @media (max-width:458px) {
+            
+
+            .ground-highlight-images img {
+                width: 35vw !important;
+                min-height: 27vh;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container w-100" style="background-color: #0f172b !important;">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Header Start -->
+        <% if (user) { %>
+            <%- include('navbarlogout.ejs') %>
+          <% } else { %>
+            <%- include('navbar.ejs') %>
+          <% } %>
+        
+    <!-- Header End -->
+
+    <div>
+      <h1>Booking Form</h1>
+
+      <label for="exampleInputEmail1" style="color: #000000; font-size: x-large;">Select Date:</label>
+      <input class="date form-control" type="date" autocomplete="one-time-code" autocomplete="off" required
+        id="date" onchange="updateTimeSlots()">
+
+      <label for="time">Select Time Slot:</label>
+      <select id="time" onchange="updatePrice()">
+        <option>Select time slot</option>
+      </select>
+      
+      <div class="form-outline mb-4">
+        <input type="email" id="email-address" class="form-control form-control-lg"
+          placeholder="Enter a valid email address" name="email" readonly value="<%= user.email %>"/>
+        <label class="form-label" for="email-address">Email address</label>
+      </div>
+
+      <p id="priceDisplay">Price: Rs 0</p>
+      <button onclick="bookAction()">Submit</button>
+    </div>
+    <script>
+      let selectedDate = null;
+      let selectedTimeSlot = null;
+      let selectedPrice = 0;
+      const bookingList = JSON.parse('<%- JSON.stringify(bookingList) %>');
+      function updateTimeSlots() {
+        const date = new Date(document.getElementById('date').value);
+        selectedDate = date;
+        const timeSelect = document.getElementById('time');
+        selectedDate = `${selectedDate.getDate()}/${selectedDate.getMonth()+1}/${selectedDate.getFullYear()}`
+        const month = date.getMonth() + 1;  // getMonth() returns 0-based month (0: January, 1: February, ..., 11: December)
+
+        // Check if the selected month is November
+        if (month === 11) {
+          timeSelect.innerHTML = '';
+          document.getElementById('priceDisplay').innerText = 'Ground is not available in November.';
+          return;
+        }
+
+        const day = date.getDay();  // 0: Sunday, 1: Monday, ..., 6: Saturday
+
+        // Check the day and update time slots and day type accordingly
+        if (date >= new Date('2023-12-01')) {
+          if (day >= 1 && day <= 5) {  // Monday to Friday are weekdays
+            timeSelect.innerHTML = `
+      <option value="07:00-10:30">7:00 am - 10:30 am</option>
+      <option value="11:00-02:30">11:00 am - 02:30 pm</option>
+      <option value="03:00-06:30">03:00 pm - 06:30 pm</option>
+      <option value="07:00-10:00">07:00 pm - 10:00 pm</option>
+    `;
+          } else {  // Saturday and Sunday are weekends
+            timeSelect.innerHTML = `
+      <option value="07:00-10:30">7:00 am - 10:30 am</option>
+      <option value="11:00-02:30">11:00 am - 02:30 pm</option>
+      <option value="03:00-06:30">03:00 pm - 06:30 pm</option>
+      <option value="07:00-10:00">07:00 pm - 10:00 pm</option>
+    `;
+          }
+        } else if (date >= new Date('2023-10-01')) {
+          if (day >= 1 && day <= 5) {  // Monday to Friday are weekdays
+            timeSelect.innerHTML = `
+      <option value="07:00-10:30">7:00 am - 10:30 am</option>
+      <option value="11:00-02:30">11:00 am - 02:30 pm</option>
+      <option value="03:00-06:30">03:00 pm - 06:30 pm</option>
+    `;
+          } else {  // Saturday and Sunday are weekends
+            timeSelect.innerHTML = `
+      <option value="07:00-10:30">7:00 am - 10:30 am</option>
+      <option value="11:00-02:30">11:00 am - 02:30 pm</option>
+      <option value="03:00-06:30">03:00 pm - 06:30 pm</option>
+    `;
+          }
+        } else {
+          if (day >= 1 && day <= 5) {  // Monday to Friday are weekdays
+            timeSelect.innerHTML = `
+      <option value="07:00-11:30">7:00 am - 11:30 am</option>
+      <option value="12:30-05:00">12:30 pm - 05:00 pm</option>
+    `;
+          } else {  // Saturday and Sunday are weekends
+            timeSelect.innerHTML = `
+      <option value="07:00-10:30">7:00 am - 10:30 am</option>
+      <option value="12:30-05:00">12:30 am - 05:00 pm</option>
+    `;
+          }
+        }
+
+        //blocking a specific time slot 
+        
+        const options = timeSelect.options;
+        for (let i = 0; i < options.length; i++) {
+          const optionValue = options[i].value;
+          const optionDate = selectedDate  // Extract the date part from the option value
+          const optionTimeSlot = optionValue  // Extract the time slot part from the option value
+          bookingList.map((item)=>{
+            if(item.date==selectedDate && item.timeslot==optionValue){
+              options[i].disabled=true;
+              options[i].innerText += " (Blocked)";
+            }
+          })
+          
+        }
+
+        updatePrice();  // Update the price based on the new time slots
+      }
+
+      function updatePrice() {
+        const time = document.getElementById('time').value;
+        selectedTimeSlot = time;
+        const date = new Date(document.getElementById('date').value);
+        const day = date.getDay();  // 0: Sunday, 1: Monday, ..., 6: Saturday
+
+        // Extracting the time slot price based on the given schedule
+        let prices;
+
+        if (date >= new Date('2023-12-01')) {
+          prices = {
+            weekday: {
+              '07:00-10:30': 4500,
+              '11:00-02:30': 4500,
+              '03:00-06:30': 8000,
+              '07:00-10:00': 12000
+            },
+            weekend: {
+              '07:00-10:30': 6000,
+              '11:00-02:30': 6000,
+              '03:00-06:30': 10000,
+              '07:00-10:00': 16000
+            }
+          };
+        } else if (date >= new Date('2023-10-01')) {
+          prices = {
+            weekday: {
+              '07:00-10:30': 4500,
+              '11:00-02:30': 4500,
+              '03:00-06:30': 6000
+            },
+            weekend: {
+              '07:00-10:30': 6000,
+              '11:00-02:30': 6000,
+              '03:00-06:30': 8000
+            }
+          };
+        } else if (date >= new Date('2023-09-01')) {
+          prices = {
+            weekday: {
+              '07:00-11:30': 4500,
+              '12:30-05:00': 4500
+            },
+            weekend: {
+              '07:00-10:30': 8000,
+              '12:30-05:00': 8000
+            }
+          };
+        }
+
+        const dayType = (day >= 1 && day <= 5) ? 'weekday' : 'weekend';
+
+        const price = prices[dayType][time];
+        selectedPrice = prices[dayType][selectedTimeSlot];
+        const gst = 0.18; // GST rate
+        const totalPrice = price + (price * gst); // Add GST
+
+        document.getElementById('priceDisplay').innerText = `Price: Rs ${totalPrice}`;
+      }
+      
+      function bookAction() {
+        
+        alert("from book action function")
+        var email=document.getElementById("email-address").value
+        
+        const data = {
+          email:email,
+          date: selectedDate,
+          timeSlot: selectedTimeSlot,
+          price: selectedPrice
+        };
+        
+        if (selectedDate == null || selectedTimeSlot == null || selectedPrice == 0) {
+          alert("Select the booking details properly");
+          return false
+        }
+        else if (blockedData.includes(selectedDate) && blockedTimeSlot.includes(selectedTimeSlot)) {
+          alert("This time slot on the selected date is blocked. Please choose another time slot.");
+          return false;
+        }
+        else {
+          fetch("/booking", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+            .then(response =>{
+              return response.json()
+            })
+            .then(data => {
+              console.log('Success:', data);
+              if (data.redirectTo) {
+                window.location.href = data.redirectTo; // Redirect on the client side
+              }
+              // Handle the response from the server if needed
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+              // Handle errors if needed
+            });
+
+        }
+      }
+    </script>
+  
+
+
+
+    <!-- Footer Start -->
+    <%- include('footer.ejs') %>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="./script.js"></script>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>
