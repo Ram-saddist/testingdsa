@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/app.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
