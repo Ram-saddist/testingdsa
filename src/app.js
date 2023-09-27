@@ -71,6 +71,9 @@ app.get("/refunds", isLoggedIn, (req, res) => {
   res.render("refunds", { user: res.locals.user });
 });
 
+app.get("/successful", isLoggedIn, (req, res) => {
+  res.render("successful", { user: res.locals.user });
+});
 
 
 app.get("/booking", isLoggedIn, async (req, res) => {
@@ -99,7 +102,7 @@ app.post("/booking", async (req, res) => {
 
     const newBook = new bookCollection(data);
     await newBook.save();
-    res.json({ redirectTo: '/about' });
+    res.json({ redirectTo: '/successful' });
   } catch (error) {
     console.error("Error in signup:", error);
     console.error("Attempted data:", data);
