@@ -45,9 +45,9 @@
         }
 
         .ground-highlight-images img {
-            width: 400px;
+            width: 500px;
             /* Set a fixed width for all images */
-            height: 400px;
+            height: 300px;
             /* Set a fixed height for all images */
             object-fit: cover;
             /* Ensure the images fit within the fixed dimensions */
@@ -98,6 +98,15 @@
                 /* Set a fixed width for all images */
             }
             
+        }
+        @media (max-width:568px){
+            .register h2{
+                font-size: 1rem;
+                margin-top: 15px;
+            }
+            .block{
+                font-size: 1rem;
+            }
         }
         @media (max-width: 420px) {
             .ground-highlight-images img {
@@ -221,12 +230,12 @@
         <div class="container">
             <div class="bg-white shadow" style="padding: 35px;">
                 <div class="row g-2">
-                    <div class="col-md-10 register">
+                    <div class="col-9 col-md-10 register">
                         <div class="content">
                             <h2 class="">Register Your Playtime</h2>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-3 col-md-2">
                         <% if (user) { %>
                             <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight"><button class="btn btn-primary w-100">Book</button></a>
                         <% } else { %>
@@ -281,7 +290,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <!-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="room-item shadow rounded overflow-hidden">
                         <div class="position-relative">
                             <img class="img-fluid" src="img/ground-2.jpg" alt="">
@@ -311,7 +320,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
                     <div class="room-item shadow rounded overflow-hidden">
                         <div class="position-relative">
@@ -355,14 +364,11 @@
             <div class="bg-white shadow" style="padding: 35px;">
 
                 <div class="row g-2">
-                    <div class="col-md-10 register">
+                    <div class="col-9 col-md-10 register">
                         <!-- Your content here -->
-                        <h2>Block Your Time To Refresh</h2>
-
-
-
+                        <h2 class="block">Block Your Time To Refresh</h2>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-3 col-md-2">
 
                         <% if (user) { %>
                             <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight"><button class="btn btn-primary w-100">Book</button></a>
