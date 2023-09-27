@@ -49,29 +49,73 @@
     <!--myu style code-->
     <style>
        
-        body{
-           background-image:linear-gradient(beige,bisque,beige) ;
-        }
-
+      body{
+         background-image:linear-gradient(beige,bisque,beige) ;
+      }
+      .parent{
+        background-color: white;
+        width:50vw;
+        margin:auto;
+        padding:3%;
+        margin-top:2%;
+        border-radius: 25px;
         
+      }
+      .parent .form-outline{
+        margin-bottom:20px
+      }
+      .parent label{
+        color: #000000; font-size: x-large;
+      }
+#priceDisplay{
+color: black;
+font-size:3rem
+}
+.btn-submit{
+width:80%;
+border-width:1px;
+background-color: green;
+color:white;
+padding:1%;
+font-size:1.3rem;
 
-        .ground-highlight-images img {
-            width: 30vw;
-            min-height: 45vh;
-        }
+}      
+
+      .ground-highlight-images img {
+          width: 30vw;
+          min-height: 45vh;
+      }
 
 
 
-        @media (max-width:458px) {
+      @media (max-width:458px) {
+          
+
+          .ground-highlight-images img {
+              width: 35vw !important;
+              min-height: 27vh;
+          }
+          #priceDisplay{
+            font-size:2rem !important
+          }
+          .parent{
+            margin-left:-1% !important;
+            border-radius: 0px !important;
+            margin-bottom: 20% !important;
+          }
+          .btn-submit{
+            margin: auto;
+            width:90%;
             
-
-            .ground-highlight-images img {
-                width: 35vw !important;
-                min-height: 27vh;
-            }
-        }
+          }
+      }
+      @media (max-width:768px){
+        .parent{
         
-    </style>
+        width:97vw;}
+      }
+      
+  </style>
 </head>
 
 <body>
@@ -94,26 +138,28 @@
         
     <!-- Header End -->
 
-    <div>
+    <div class="parent">
       <h1>Booking Form</h1>
-
-      <label for="exampleInputEmail1" style="color: #000000; font-size: x-large;">Select Date:</label>
+      <div class="form-outline">
+      <label for="exampleInputEmail1">Select Date:</label>
       <input class="date form-control" type="date" autocomplete="one-time-code" autocomplete="off" required
         id="date" onchange="updateTimeSlots()">
-
+      </div>
+        <div class="form-outline">
       <label for="time">Select Time Slot:</label>
       <select id="time" onchange="updatePrice()">
         <option>Select time slot</option>
       </select>
-      
-      <div class="form-outline mb-4">
+      </div>
+      <div class="form-outline">
+        <label class="form-label" for="email-address">Email address</label>
         <input type="email" id="email-address" class="form-control form-control-lg"
           placeholder="Enter a valid email address" name="email" readonly value="<%= user.email %>"/>
-        <label class="form-label" for="email-address">Email address</label>
+        
       </div>
 
       <p id="priceDisplay">Price: Rs 0</p>
-      <button onclick="bookAction()">Submit</button>
+      <button class="btn-submit" onclick="bookAction()">Submit</button>
     </div>
     <script>
       let selectedDate = null;
@@ -276,10 +322,7 @@
           alert("Select the booking details properly");
           return false
         }
-        else if (blockedData.includes(selectedDate) && blockedTimeSlot.includes(selectedTimeSlot)) {
-          alert("This time slot on the selected date is blocked. Please choose another time slot.");
-          return false;
-        }
+        
         else {
           fetch("/booking", {
             method: 'POST',

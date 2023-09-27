@@ -154,7 +154,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                            <% if (user) { %>
+                                <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                            <% } else { %>
+                                <a href="/login" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                            <% } %>
+                           
                         </div>
 
                     </div>
@@ -187,7 +192,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book NOW</a>
+                            <% if (user) { %>
+                                <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                            <% } else { %>
+                                <a href="/login" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                            <% } %>
                         </div>
 
                     </div>
@@ -218,7 +227,12 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary w-100">Book</button>
+                        <% if (user) { %>
+                            <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight"><button class="btn btn-primary w-100">Book</button></a>
+                        <% } else { %>
+                            <a href="/login" class="btn btn-light py-md-3 px-md-5 animated slideInRight"><button class="btn btn-primary w-100">Book</button></a>
+                        <% } %>
+                        
                     </div>
                 </div>
             </div>
@@ -258,7 +272,11 @@
                                 sed diam stet diam sed stet lorem.</p>
                             <div class="d-flex justify-content-between">
                                 <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                <% if (user) { %>
+                                    <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                                <% } else { %>
+                                    <a href="/login" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -285,7 +303,11 @@
                                 sed diam stet diam sed stet lorem.</p>
                             <div class="d-flex justify-content-between">
                                 <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                <% if (user) { %>
+                                    <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                                <% } else { %>
+                                    <a href="/login" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -312,7 +334,11 @@
                                 sed diam stet diam sed stet lorem.</p>
                             <div class="d-flex justify-content-between">
                                 <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>
-                                <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+                                <% if (user) { %>
+                                    <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                                <% } else { %>
+                                    <a href="/login" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book Now</a>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -338,7 +364,11 @@
                     </div>
                     <div class="col-md-2">
 
-                        <button class="btn btn-primary w-100">Book</button>
+                        <% if (user) { %>
+                            <a href="/booking" class="btn btn-light py-md-3 px-md-5 animated slideInRight"><button class="btn btn-primary w-100">Book</button></a>
+                        <% } else { %>
+                            <a href="/login" class="btn btn-light py-md-3 px-md-5 animated slideInRight"><button class="btn btn-primary w-100">Book</button></a>
+                        <% } %>
 
                     </div>
                 </div>

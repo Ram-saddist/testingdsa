@@ -10,6 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +41,9 @@
       border: 1px solid red;
     } */
        
-
+        .card{
+            border-radius: 25px;
+        }
         .term-para {
             color: navy;
             font-weight: lighter;
@@ -83,9 +86,13 @@
                 padding:2.5% 0.3%;
                 font-size:0.68rem !important;
             }
+            .card{
+                border-radius: 0px !important;
+            }
         }
 
         @media (max-width:430px){
+            
             .image-fluid {
                 width: 13vw
             }
@@ -109,6 +116,7 @@
             }
         }
     </style>
+    
 </head>
 
 <body>
@@ -121,7 +129,7 @@
                         <div class="container h-90">
                             <div class="row d-flex justify-content-center align-items-center h-100">
                                 <div class="col-lg-12 col-xl-11">
-                                    <div class="card " style="border-radius: 25px;">
+                                    <div class="card">
                                         <div class="card-body p-md-5">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -137,7 +145,7 @@
                                                                 <label class="form-label" for="form3Example1c">Your
                                                                     Name</label>
                                                                 <input type="text" name="firstname" id="form3Example1c"
-                                                                    class="form-control"  oninput="clearError('nameError')"/>
+                                                                    class="form-control"  oninput="clearError('nameError')" required/>
                                                                 <span style="color:red" id="nameError" class="error"></span><br>
                                                             </div>
                                                         </div>
@@ -149,7 +157,7 @@
                                                                 <label class="form-label" for="form3Example3c">Your
                                                                     Email</label>
                                                                 <input type="email" id="form3Example3c" name="username"
-                                                                    class="form-control" oninput="clearError('emailError')"/>
+                                                                    class="form-control" oninput="clearError('emailError')" required/>
                                                                     <span style="color:red" id="emailError" class="error"></span><br>
                                                             </div>
                                                         </div>
@@ -160,7 +168,7 @@
                                                                 <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                                 <label class="form-label"
                                                                 for="form3Example4c">Password</label>
-                                                                <input name="password" type="password"
+                                                                <input name="password" type="password" required
                                                                     id="form3Example4c" class="form-control" oninput="clearError('passwordError')"/>
                                                                     <span style="color:red" id="passwordError" class="error"></span><br>
                                                             </div>
@@ -173,7 +181,7 @@
                                                                 <label class="form-label" for="form3Example4cd">Repeat
                                                                     your password</label>
                                                                 <input type="password" id="form3Example4cd"
-                                                                    class="form-control" oninput="clearError('confirmPasswordError')"/>
+                                                                    class="form-control" oninput="clearError('confirmPasswordError')" required/>
                                                                     <span style="color:red" id="confirmPasswordError" class="error"></span><br>
                                                             </div>
                                                         </div>
@@ -183,7 +191,7 @@
                                                                 <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
                                                                 <label class="form-label" for="form3Example3c">Phone
                                                                     number </label>
-                                                                <input type="text" name="phone_number" id="form3Example5c"
+                                                                <input type="text" name="phone_number" id="form3Example5c" required
                                                                     class="form-control" oninput="clearError('phoneError')"/>
                                                                     <span style="color:red" id="phoneError" class="error"></span><br>
                                                                 
@@ -195,7 +203,7 @@
 
                                                         <div class="form-check d-flex justify-content-center mb-5">
                                                             <input class="form-check-input me-2" type="checkbox"
-                                                                value="" id="form2Example3c" />
+                                                                value="" id="form2Example3c" required/>
                                                             <label class="form-check-label" for="form2Example3">
                                                                 I agree all statements in <a href="/terms">Terms of
                                                                     service</a>
@@ -251,16 +259,38 @@
                             <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
                             <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-                            <!-- Template Javascript -->
-                            <script src="js/main.js"></script>
+                            
 
                                                                                     <!-- JavaScript for sending OTP via AJAX -->
 <script>
+     function showOTPNotification() {
+            Toastify({
+                text: "OTP has been sent to your email.",
+                duration: 3000, // Duration in milliseconds
+                gravity: "bottom", // Position: top, bottom, left, right
+                position: "right", // Position: top, bottom, left, right, center
+                backgroundColor: "green", // Background color
+                stopOnFocus: true, // Stop timer when the notification is clicked or focused
+            }).showToast();
+        }
     let otpFromBackend;
     document.getElementById('sendOTPButton').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-    
+        event.preventDefault(); 
+        // Prevent the default form submission behavior
+        
+        
         const emailInput = document.getElementById('form3Example3c').value;
+        
+        if(emailInput==""){
+            alert("Enter Email address to send OTP")
+            return false
+        }
+        const termsCheckbox=document.getElementById("form2Example3c").checked
+        if(termsCheckbox==false){
+            alert("Accept the Terms of Service policy")
+            return false
+        }
+        showOTPNotification();
         console.log(emailInput)
         // Make an HTTP POST request to the server
         fetch('/send-email', {
@@ -272,7 +302,7 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Server response:', data);
+            
             otpFromBackend=data.generatedOTP;
             // Handle the server response here
         })
@@ -292,11 +322,25 @@
         console.log("from validate function",otpFromBackend)
         var otpCheck=document.getElementById("otpcheck").value
         if(otpCheck!=otpFromBackend){
-            alert("OTP miss match... Please Check once again")
+            Toastify({
+            text: "OTP mismatch... Please check once again",
+            duration: 3000, // Duration in milliseconds
+            gravity: "top", // Position: top, bottom, left, right
+            position: "right", // Position: top, bottom, left, right, center
+            backgroundColor: "red", // Background color
+            stopOnFocus: true, // Stop timer when the notification is clicked or focused
+        }).showToast();
             return false
         }
         else{
-            alert("matches")
+            Toastify({
+            text: "OTP matches",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "green",
+            stopOnFocus: true,
+        }).showToast();
             document.querySelector("#register").classList.remove("disabled")
         }
         return true
@@ -318,7 +362,7 @@
         // Regular expressions for validation
         var nameRegex = /^[A-Za-z\s]+$/;
         var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,8}$/;
+        var passwordRegex = /^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,8}$/;
         var phoneRegex = /^\d{10}$/;
         // Clear previous error messages
         document.getElementById("nameError").innerText = "";
@@ -341,7 +385,7 @@
     
         // Validate password
         if (!password.match(passwordRegex)) {
-            document.getElementById("passwordError").innerText = "Please enter a valid password (at least 6 characters, including one uppercase letter, one lowercase letter, and one digit).";
+            document.getElementById("passwordError").innerText = "Please enter a valid password (6 to 8 characters, including one uppercase letter, one lowercase letter, and one digit).";
             return false;
         }
     
@@ -358,7 +402,14 @@
         }
         return true;
     }
+
+   
+
+
     
     </script>
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>

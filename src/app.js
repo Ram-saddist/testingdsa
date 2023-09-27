@@ -214,15 +214,18 @@ app.post('/send-email', async (req, res) => {
     const mailOptions = {
       from: 'raghuveer@codegnan.com', // Sender address
       to: `${email}`, // Recipient address
-      subject: 'Test Email from Node.js', // Subject line
+      subject: 'Registration Confirmation', // Subject line
       html: `
-          <html>
-            <body>
-              <h1>Hello, John Doe</h1>
-              <p>Your OTP is: <strong>${otp}</strong></p>
-            </body>
-          </html>
-        `
+        Welcome to Doctors Olympiad 2023
+        Greetings from Doctors Sports Academy We are thrilled to have received your
+            registration. Get ready to showcase your sportsmanship and camaraderie on the field!
+        Your One-Time Password (OTP) for registration is:${otp}
+        
+        Thank you for registering for the Doctors Sports Academy. We look forward to seeing you
+            at the event!
+        Warm regards,
+        Doctors Sports Academy
+      `
     };
 
     // Send email
@@ -259,7 +262,7 @@ app.post("/forgot-password", async (req, res) => {
   const user = await collection.findOne({ email: email });
   console.log("from forget password route", email, user)
   if (!user) {
-    res.status(404).send("User with this email not found");
+    res.render("forgot-password");
   }
 
   const { otp, fullHash } = generateOtp(email);
@@ -267,14 +270,19 @@ app.post("/forgot-password", async (req, res) => {
   try {
     const subject = "Reset password";
     const text = `
-                  <html>
-                    <body>
-                      <h1>Hello, ${user.email}</h1>
-                      <p>Your OTP is: <strong>${otp}</strong></p>
-                    </body>
-                  </html>`;
+      Password Reset
+          
+      We received a request to reset your password. Please click on the link below to reset your password:
+      Your One-Time Password (OTP) for registration is: ${otp}
 
-    const msg = { from: "max@arleven.com", to: email, subject, text };
+      If you did not request this password reset, you can ignore this email.
+      If you have any questions or need assistance, please do not hesitate to contact us.
+
+      Best regards,
+      Your Support Team
+    `;
+
+    const msg = { from: "raghuveer@codegnan.com", to: email, subject, text };
     await transport.sendMail(msg);
   } catch (error) {
     console.error(error);
