@@ -49,73 +49,73 @@
     <!--myu style code-->
     <style>
        
-      body{
-         background-image:linear-gradient(beige,bisque,beige) ;
-      }
-      .parent{
-        background-color: white;
-        width:50vw;
-        margin:auto;
-        padding:3%;
-        margin-top:2%;
-        border-radius: 25px;
-        
-      }
-      .parent .form-outline{
-        margin-bottom:20px
-      }
-      .parent label{
-        color: #000000; font-size: x-large;
-      }
+        body{
+           background-image:linear-gradient(beige,bisque,beige) ;
+        }
+        .parent{
+          background-color: white;
+          width:50vw;
+          margin:auto;
+          padding:3%;
+          margin-top:2%;
+          border-radius: 25px;
+          
+        }
+        .parent .form-outline{
+          margin-bottom:20px
+        }
+        .parent label{
+          color: #000000; font-size: x-large;
+        }
 #priceDisplay{
-color: black;
-font-size:3rem
+  color: black;
+  font-size:3rem
 }
 .btn-submit{
-width:80%;
-border-width:1px;
-background-color: green;
-color:white;
-padding:1%;
-font-size:1.3rem;
-
+  width:80%;
+  border-width:1px;
+  background-color: green;
+  color:white;
+  padding:1%;
+  font-size:1.3rem;
+ 
 }      
 
-      .ground-highlight-images img {
-          width: 30vw;
-          min-height: 45vh;
-      }
+        .ground-highlight-images img {
+            width: 30vw;
+            min-height: 45vh;
+        }
 
 
 
-      @media (max-width:458px) {
-          
-
-          .ground-highlight-images img {
-              width: 35vw !important;
-              min-height: 27vh;
-          }
-          #priceDisplay{
-            font-size:2rem !important
-          }
-          .parent{
-            margin-left:-1% !important;
-            border-radius: 0px !important;
-            margin-bottom: 20% !important;
-          }
-          .btn-submit{
-            margin: auto;
-            width:90%;
+        @media (max-width:458px) {
             
-          }
-      }
-      @media (max-width:768px){
-        .parent{
+
+            .ground-highlight-images img {
+                width: 35vw !important;
+                min-height: 27vh;
+            }
+            #priceDisplay{
+              font-size:2rem !important
+            }
+            .parent{
+              margin-left:-1% !important;
+              border-radius: 0px !important;
+              margin-bottom: 20% !important;
+            }
+            .btn-submit{
+              margin: auto;
+              width:90%;
+              
+            }
+        }
+        @media (max-width:768px){
+          .parent{
+          
+          width:97vw;}
+        }
         
-        width:97vw;}
-      }
-      
-  </style>
+    </style>
 </head>
 
 <body>
@@ -307,6 +307,8 @@ font-size:1.3rem;
       }
       
       function bookAction() {
+        
+        
         var email=document.getElementById("email-address").value
         
         const data = {
@@ -317,10 +319,9 @@ font-size:1.3rem;
         };
         
         if (selectedDate == null || selectedTimeSlot == null || selectedPrice == 0) {
-          alert("Select the booking details properly");
+          
           return false
         }
-        
         else {
           fetch("/booking", {
             method: 'POST',
@@ -375,7 +376,6 @@ font-size:1.3rem;
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="./script.js"></script>
 
     <script>
         

@@ -14,7 +14,9 @@
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Icon Font Stylesheet -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -30,251 +32,266 @@
 
   <!-- Template Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
 
   <!--myu style code-->
   <style>
     /* *{
       border: 1px solid red;
     } */
-    
-      .term-para{
-        color: navy; 
-        font-weight: lighter;
-        text-align: justify;
-      }
-      .term-heading{
-        color: navy;
-        font-size: 1.4rem;
-      }
-      
-     
 
-      .card {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-        padding: 20px;
-      }
+    .term-para {
+      color: navy;
+      font-weight: lighter;
+      text-align: justify;
+    }
 
-      h2 {
-        color: #4a90e2;
-        border-bottom: 2px solid #4a90e2;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-      }
+    .term-heading {
+      color: navy;
+      font-size: 1.4rem;
+    }
 
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
 
-      th,
-      td {
-        border: 1px solid #e1e1e1;
-        padding: 8px 12px;
-        text-align: left;
-      }
 
-      th {
-        background-color: #4a90e2;
-        color: white;
-        border-radius: 5px;
-      }
+    .card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
 
-      tr:nth-child(even) {
-        background-color: #f5f5f5;
-      }
+    h2 {
+      color: #4a90e2;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
 
-      .note {
-        font-style: italic;
-        color: #e74c3c;
-        font-size: 0.9em;
-      }
-       
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #e1e1e1;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4a90e2;
+      color: white;
+      border-radius: 5px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+
+    .note {
+      font-style: italic;
+      color: #e74c3c;
+      font-size: 0.9em;
+    }
   </style>
 </head>
+
 <body>
 
 
- <!-- Header Start -->
- <% if (user) { %>
+  <!-- Header Start -->
+  <% if (user) { %>
     <%- include('navbarlogout.ejs') %>
-  <% } else { %>
-    <%- include('navbar.ejs') %>
-  <% } %>
-<!-- Header End -->
-<!-- Header End -->
+      <% } else { %>
+        <%- include('navbar.ejs') %>
+          <% } %>
+            <!-- Header End -->
+            <!-- Header End -->
 
-  <div class="card">
-    <h2>From September 1</h2>
-    <h2>Weekdays</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>07:00 am - 11:30 am</td>
-          <td>Rs 4,500</td>
-        </tr>
-        <tr>
-          <td>12:30 pm - 05:00 pm</td>
-          <td>Rs 4,500</td>
-        </tr>
-      </tbody>
-    </table>
+            <div class="card">
+              <h2>From September 1</h2>
+              <h2>Weekdays</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>07:00 am - 11:30 am</td>
+                    <td>Rs 4,500</td>
+                  </tr>
+                  <tr>
+                    <td>12:30 pm - 05:00 pm</td>
+                    <td>Rs 4,500</td>
+                  </tr>
+                </tbody>
+              </table>
 
-    <h2>Weekends & Holidays</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>07:00 am - 11:30 am</td>
-          <td>Rs 8,000</td>
-        </tr>
-        <tr>
-          <td>12:30 pm - 05:00 pm</td>
-          <td>Rs 8,000</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+              <h2>Weekends & Holidays</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>07:00 am - 11:30 am</td>
+                    <td>Rs 8,000</td>
+                  </tr>
+                  <tr>
+                    <td>12:30 pm - 05:00 pm</td>
+                    <td>Rs 8,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
 
-  <div class="card">
-    <h2>From October 1</h2>
-    <h2>Weekdays</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>07:00 am - 10:30 am</td>
-          <td>Rs 4,500</td>
-        </tr>
-        <tr>
-          <td>11:00 am - 02:30 pm</td>
-          <td>Rs 4,500</td>
-        </tr>
-        <tr>
-          <td>03:00 pm - 06:30 pm</td>
-          <td>Rs 6,000</td>
-        </tr>
-      </tbody>
-    </table>
+            <div class="card">
+              <h2>From October 1</h2>
+              <h2>Weekdays</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>07:00 am - 10:30 am</td>
+                    <td>Rs 4,500</td>
+                  </tr>
+                  <tr>
+                    <td>11:00 am - 02:30 pm</td>
+                    <td>Rs 4,500</td>
+                  </tr>
+                  <tr>
+                    <td>03:00 pm - 06:30 pm</td>
+                    <td>Rs 6,000</td>
+                  </tr>
+                </tbody>
+              </table>
 
-    <h2>Weekends & Holidays</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>07:00 am - 10:30 am</td>
-          <td>Rs 6,000</td>
-        </tr>
-        <tr>
-          <td>11:00 am - 02:30 pm</td>
-          <td>Rs 6,000</td>
-        </tr>
-        <tr>
-          <td>03:00 pm - 06:30 pm</td>
-          <td>Rs 8,000</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+              <h2>Weekends & Holidays</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>07:00 am - 10:30 am</td>
+                    <td>Rs 6,000</td>
+                  </tr>
+                  <tr>
+                    <td>11:00 am - 02:30 pm</td>
+                    <td>Rs 6,000</td>
+                  </tr>
+                  <tr>
+                    <td>03:00 pm - 06:30 pm</td>
+                    <td>Rs 8,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-  <div class="card">
-    <h2>From December 1</h2>
-    <h2>Weekdays</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>07:00 am - 10:30 am</td>
-          <td>Rs 4,500</td>
-        </tr>
-        <tr>
-          <td>11:00 am - 02:30 pm</td>
-          <td>Rs 4,500</td>
-        </tr>
-        <tr>
-          <td>03:00 pm - 06:30 pm</td>
-          <td>Rs 6,000</td>
-        </tr>
-      </tbody>
-    </table>
+            <div class="card">
+              <h2>From December 1</h2>
+              <h2>Weekdays</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>07:00 am - 10:30 am</td>
+                    <td>Rs 4,500</td>
+                  </tr>
+                  <tr>
+                    <td>11:00 am - 02:30 pm</td>
+                    <td>Rs 4,500</td>
+                  </tr>
+                  <tr>
+                    <td>03:00 pm - 06:30 pm</td>
+                    <td>Rs 6,000</td>
+                  </tr>
+                </tbody>
+              </table>
 
-    <h2>Weekends & Holidays</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>07:00 am - 10:30 am</td>
-          <td>Rs 6,000</td>
-        </tr>
-        <tr>
-          <td>11:00 am - 02:30 pm</td>
-          <td>Rs 6,000</td>
-        </tr>
-        <tr>
-          <td>03:00 pm - 06:30 pm</td>
-          <td>Rs 8,000</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+              <h2>Weekends & Holidays</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>07:00 am - 10:30 am</td>
+                    <td>Rs 6,000</td>
+                  </tr>
+                  <tr>
+                    <td>11:00 am - 02:30 pm</td>
+                    <td>Rs 6,000</td>
+                  </tr>
+                  <tr>
+                    <td>03:00 pm - 06:30 pm</td>
+                    <td>Rs 8,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-  <p class="note">GST charges are extra</p>    
-    
+            <p class="note">GST charges are extra</p>
 
-    <!-- Footer Start -->
-    <%- include('footer.ejs') %>
-  <!-- Footer End -->
 
-  
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+            <!-- Footer Start -->
+            <%- include('footer.ejs') %>
+              <!-- Footer End -->
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+
+              <!-- JavaScript Libraries -->
+              <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+              <script src="lib/wow/wow.min.js"></script>
+              <script src="lib/easing/easing.min.js"></script>
+              <script src="lib/waypoints/waypoints.min.js"></script>
+              <script src="lib/counterup/counterup.min.js"></script>
+              <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+              <script src="lib/tempusdominus/js/moment.min.js"></script>
+              <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+              <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+              <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+              <!-- Template Javascript -->
+              <script>
+                $(document).ready(function () {
+                  if ('<%= toastrBookingMessage %>' === "Booking successful") {
+                    toastr.success('<%= toastrBookingMessage %>');
+                  }
+                  else {
+                    toastr.info('<%= toastrBookingMessage %>');
+                  }
+                })
+              </script>
+              <script src="js/main.js"></script>
 
 
 </body>
+
 </html>

@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://sivaram:sivaram@cluster0.0u7y0h0.mongodb.net/DSA?retryWrites=true&w=majority",
-      //mongodb+srv://raghuveermustimalla:12112002@raghu.mcmvy9z.mongodb.net/?retryWrites=true&w=majority
+
+      "mongodb+srv://raghuveermustimalla:12112002@raghu.mcmvy9z.mongodb.net/?retryWrites=true&w=majority",
+
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -16,4 +17,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDB;
