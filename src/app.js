@@ -69,7 +69,7 @@ app.get("/", isLoggedIn, (req, res) => {
   } else {
     res.render("index", {
       user: res.locals.user,
-      toastrSuccessMessage: "Welcome back",
+      toastrSuccessMessage: "",
     });
   }
 });
@@ -113,25 +113,29 @@ app.post("/booking", async (req, res) => {
   try {
     const newBook = new bookCollection(data);
     await newBook.save();
-    res.json({ redirectTo: "/about?from=booking" });
+    res.json({ redirectTo: "/slotbooked?from=booking" });
   } catch (error) {
     req.flash("error", "An error occurred during signup. Please try again.");
     return null;
   }
 });
 
+app.get("/about", isLoggedIn, (req, res) => {
+  res.render("about", { user: res.locals.user });
+});
+
 app.get("/privacy", isLoggedIn, (req, res) => {
   res.render("privacy", { user: res.locals.user });
 });
 
-app.get("/about", isLoggedIn, (req, res) => {
+app.get("/slotbooked", isLoggedIn, (req, res) => {
   if (req.query.from === "booking") {
-    res.render("about", {
+    res.render("slotbooked", {
       user: res.locals.user,
       toastrBookingMessage: "Booking successful",
     });
   } else {
-    res.render("about", {
+    res.render("slotbooked", {
       user: res.locals.user,
       toastrBookingMessage: "", // You can set a default value here if needed
     });
@@ -229,7 +233,7 @@ app.get("/login", (req, res) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/?from=login",
+    successRedirect: "/",
     failureRedirect: "/signup?from=login",
     failureFlash: true,
   })
@@ -258,55 +262,53 @@ app.post("/send-email", async (req, res) => {
         pass: "dfkofuklqzcgxbzo", // Your Gmail password
       },
     });
-
+    const text=`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration Confirmation</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0 auto;
+                max-width: 600px;
+                padding: 20px;
+                background-color: rgba(206, 238, 255, 0.5);
+            }
+            h1 {
+                text-align: center;
+            }
+            img {
+                display: block;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+            .otp {
+                color: #323596;
+                font-weight: bold;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to Doctors Sports Academy</h1>
+        <p>Greetings from Doctors Sports Academy We are thrilled to have received your
+            registration. Get ready to showcase your sportsmanship and camaraderie on the field!
+        </p>
+        <p>Your One-Time Password (OTP) for registration is:<span class="otp"><strong> ${otp} </strong></span></p>
+        
+        <p>Warm regards,</p>
+        <p>Doctors Sports Academy</p>
+    </body>
+    </html>
+      `
     const mailOptions = {
       from: "raghuveer@codegnan.com", // Sender address
-      to: `${email}`, // Recipient address
+      to: email, // Recipient address
       subject: "Registration Confirmation", // Subject line
-      html: `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Registration Confirmation</title>
-          <style>
-              body {
-                  font-family: Arial, sans-serif;
-                  margin: 0 auto;
-                  max-width: 600px;
-                  padding: 20px;
-                  background-color: rgba(206, 238, 255, 0.5);
-              }
-              h1 {
-                  text-align: center;
-              }
-              img {
-                  display: block;
-                  margin: 0 auto;
-                  max-width: 100%;
-              }
-              .otp {
-                  color: #323596;
-                  font-weight: bold;
-                  font-size: 30px;
-              }
-          </style>
-      </head>
-      <body>
-          <!-- <img src="https://i.ytimg.com/vi/wq13sUIMWB0/maxresdefault.jpg" width="40%" /> -->
-          <h1>Welcome to Doctors Sports Academy</h1>
-          <p>Dear {name},</p>
-          <p>Greetings from Doctors Sports Academy We are thrilled to have received your
-              registration. Get ready to showcase your sportsmanship and camaraderie on the field!
-          </p>
-          <p>Your One-Time Password (OTP) for registration is:<span class="otp"><strong> ${otp} </strong></span></p>
-          
-          <p>Warm regards,</p>
-          <p>Doctors Sports Academy</p>
-      </body>
-      </html>
-        `,
+      html:text
     };
 
     // Send email
@@ -315,7 +317,7 @@ app.post("/send-email", async (req, res) => {
     // Send the generated OTP back to the frontend as JSON
     res.status(200).json({ generatedOTP: otp });
   } catch (error) {
-    res.status(500).send("An error occurred while sending the email.");
+    console.log("An error occurred while sending the email.");
   }
 });
 
@@ -328,7 +330,7 @@ app.post("/validate-otp", (req, res) => {
   if (enteredOTP === generatedOTP) {
     res.status(200).send("OTP is valid!");
   } else {
-    res.status(400).send("Invalid OTP. Please try again.");
+    console.log("Invalid OTP. Please try again.");
   }
 });
 
@@ -399,7 +401,7 @@ app.post("/forgot-password", async (req, res) => {
     </html>              
     `;
 
-    const msg = { from: "max@arleven.com", to: email, subject, text };
+    const msg = { from: "max@arleven.com", to: email, subject, html:text };
     await transport.sendMail(msg);
   } catch (error) {
   }

@@ -86,9 +86,8 @@
       color: #fff;
       /* Change the text color to white or any other color that contrasts well with green */
     }
-
-    @media (max-width: 767px) {
-      .col-md-9 {
+    @media (max-width:768px) {
+      .img-fluid{
         display: none;
       }
     }
@@ -101,13 +100,13 @@
   <!-- Header Start -->
   <%- include('navbar.ejs') %>
 
-    <section class="vh-100" style="margin-top: 100px;">
+    <section class="vh-100" style="margin-top: 20px;">
       <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-md-9 col-lg-6 col-xl-5">
-            <img src="https://doctorsolympiad.com/static/images/login-thumb.webp" class="img-fluid" alt="Sample image">
+          <div class="col-md-10 col-lg-6 col-xl-5">
+            <img src="/img/DSA Login Page.png" class="img-fluid" alt="Sample image">
           </div>
-          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <div class="col-9 col-md-10 col-lg-6 col-xl-7 offset-xl-1">
             <form action="/login" method="post">
               <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                 <p class="lead fw-normal mb-0 me-3">Login Now</p>

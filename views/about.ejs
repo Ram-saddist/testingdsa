@@ -111,7 +111,7 @@
             <!-- Header End -->
             <!-- Header End -->
 
-            <div class="card">
+            <!-- <div class="card">
               <h2>From September 1</h2>
               <h2>Weekdays</h2>
               <table>
@@ -258,7 +258,7 @@
             </div>
 
             <p class="note">GST charges are extra</p>
-
+ -->
 
             <!-- Footer Start -->
             <%- include('footer.ejs') %>
@@ -279,16 +279,7 @@
               <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
               <!-- Template Javascript -->
-              <script>
-                $(document).ready(function () {
-                  if ('<%= toastrBookingMessage %>' === "Booking successful") {
-                    toastr.success('<%= toastrBookingMessage %>');
-                  }
-                  else {
-                    toastr.info('<%= toastrBookingMessage %>');
-                  }
-                })
-              </script>
+             
               <script src="js/main.js"></script>
 
 
