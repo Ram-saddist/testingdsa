@@ -14,7 +14,9 @@
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Icon Font Stylesheet -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -33,57 +35,195 @@
 
   <!--myu style code-->
   <style>
-    /* *{
-      border: 1px solid red;
-    } */
-      
-      .term-para{
-        color: navy; 
-        font-weight: lighter;
-        text-align: justify;
+    .ground-highlight-images {
+      display: flex;
+      /* Use flexbox to align images horizontally */
+      flex-wrap: wrap;
+      /* Allow images to wrap to the next row on smaller screens */
+      justify-content: space-between;
+      /* Distribute images evenly across the row */
+    }
+
+    .ground-highlight-images img {
+      width: 540px;
+      /* Set a fixed width for all images */
+      height: 400px;
+      /* Set a fixed height for all images */
+      object-fit: cover;
+      /* Ensure the images fit within the fixed dimensions */
+      margin: 10px;
+      /* Add some margin to separate the images */
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .ground-highlight-images {
+        flex-direction: column;
+        /* Change to a column layout on mobile screens */
+        align-items: center;
+
       }
-      .term-heading{
-        color: navy;
-        font-size: 1.4rem;
+
+      .ground-highlight-images img {
+        width: 400px;
+
+        /* Set a fixed width for all images */
       }
-      
-      
-        
+
+    }
+
+    @media (max-width: 430px) {
+      .ground-highlight-images img {
+        width: 360px;
+        height: 230px;
+
+      }
+    }
+
+
+    .container1 {
+      display: flex;
+      flex-direction: row;
+      /* Align items horizontally */
+      flex-wrap: wrap;
+      /* Wrap to the next row on small screens */
+      justify-content: space-between;
+      /* Space between image and description */
+    }
+
+    .image1 {
+      flex: 1;
+      /* Take up 50% of the container width */
+      aspect-ratio: 5/4;
+      /* Ensure the image doesn't overflow */
+    }
+
+    .description1 {
+      flex: 1;
+      /* Take up 50% of the container width */
+      max-width: 100%;
+      /* Ensure the description doesn't overflow */
+    }
+
+    /* Media query for screens with a maximum width of 768px */
+    @media (max-width: 768px) {
+      .image1 {
+        max-width: 80%;
+        /* Reduce the image size to 80% of the container width */
+      }
+    }
+
+    /* Media query for screens with a maximum width of 480px */
+    @media (max-width: 480px) {
+      .image1 {
+        max-width: 60%;
+        /* Reduce the image size to 60% of the container width */
+      }
+    }
   </style>
 </head>
+
 <body>
 
 
- <!-- Header Start -->
- <% if (user) { %>
+  <!-- Header Start -->
+  <% if (user) { %>
     <%- include('navbarlogout.ejs') %>
-  <% } else { %>
-    <%- include('navbar.ejs') %>
-  <% } %>
-<!-- Header End -->
-<!-- Header End -->
-    
-        
-    <!-- Footer Start -->
-    <%- include('footer.ejs') %>
-  <!-- Footer End -->
+      <% } else { %>
+        <%- include('navbar.ejs') %>
+          <% } %>
+            <!-- Header End -->
+            <!-- Header End -->
 
-  
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+            <div style="margin-bottom: 2%;" class="container-xxl py-5">
+              <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                  <h1 class="mb-4">Cricket</h1>
+
+                  <div class="container1">
+                    <div class=" col-12 col-md-6">
+                      <img src="./img/istockphoto-1255328634-612x612.jpg" alt="Image Description" class="image1">
+                    </div>
+                    <div class="description1 col-12 col-md-6">
+                      <p class="text-body mb-1 p-5" align="justify">Cricket is a captivating team sport renowned for its
+                        rich history, intricate rules, and fervent global following, particularly in nations like India,
+                        England, Australia, Pakistan, and South Africa. The central aim of the game is for one team to
+                        outscore the opposing team within a set number of overs or innings. Each team comprises 11
+                        players who alternate between batting and fielding. While batting, players strive to score runs
+                        by hitting the ball and running between the wickets, with boundary hits garnering four or six
+                        runs. Bowlers from the fielding side attempt to dismiss batsmen using various techniques, like
+                        bowling the ball into the stumps or having them caught by fielders. Cricket is played in
+                        multiple formats, including the traditional Test matches, the balanced One Day Internationals
+                        (ODIs), and the fast-paced Twenty20 (T20) games, each offering distinct rules and strategies.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!--cricket body -->
+            <div style="margin-bottom: 3%;" class="container-xxl py-5">
+              <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+                  <h1 class="section-title text-center text-primary text-uppercase mb-3">Our <span
+                      class="text-primary text-uppercase">Ground</span></h1>
+
+                  <p class="text-body mb-1 p-5" align="justify">Our Cricket Stadium is a prominent sporting facility
+                    dedicated to cricket. It is known for its size and capacity, offering a spacious environment for
+                    cricket enthusiasts. The stadium is an iconic landmark in the region, serving as a hub for both
+                    sports and cultural events.
+
+                    One of its key features is the meticulously maintained playing field with a standard 22-yard cricket
+                    pitch. The stadium's grandstands cater to different preferences, providing general seating as well
+                    as VIP boxes and corporate suites. Modern amenities such as an electronic scoreboard and floodlights
+                    enhance the viewing experience.
+
+                    Covering an expansive area, Our Cricket Stadium includes not only the playing field but also
+                    parking, practice facilities, and administrative spaces. It holds cultural significance and hosts
+                    various events beyond cricket matches, becoming an integral part of the community.
+
+                    In essence, Our Cricket Stadium is a symbol of the region's passion for cricket, offering an
+                    immersive experience for visitors and serving as a place where sporting history is made.</p>
+                </div>
+
+              </div>
+
+            </div>
+
+            <section class="container px-md-5">
+              <div class="ground-highlight-images">
+                <img src="./img/WhatsApp Image 2023-10-03 at 10.59.46 AM.jpeg" />
+                <img src="./img/WhatsApp Image 2023-10-03 at 10.59.47 AM.jpeg">
+                <img src="./img/WhatsApp Image 2023-10-03 at 11.00.32 AM (1).jpeg" />
+                <img src="./img/WhatsApp Image 2023-10-03 at 11.00.32 AM.jpeg" />
+
+              </div>
+            </section>
+
+            <!-- Footer Start -->
+            <%- include('footer.ejs') %>
+              <!-- Footer End -->
+
+
+              <!-- JavaScript Libraries -->
+              <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+              <script src="lib/wow/wow.min.js"></script>
+              <script src="lib/easing/easing.min.js"></script>
+              <script src="lib/waypoints/waypoints.min.js"></script>
+              <script src="lib/counterup/counterup.min.js"></script>
+              <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+              <script src="lib/tempusdominus/js/moment.min.js"></script>
+              <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+              <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+              <!-- Template Javascript -->
+              <script src="js/main.js"></script>
 
 
 </body>
+
 </html>

@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const collection = require("./config");
 const bookCollection = require("./bookConfig");
 const bcrypt = require("bcrypt");
@@ -40,7 +39,64 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-const { sendOTP } = require("./otp-service"); // Implement this module
+const otp = Math.floor(100000 + Math.random() * 900000);
+const host = "smtp.gmail.com";
+const userhost = "sivaram@codegnan.com";
+const passhost = "iqhakdyilcqvbojb";
+const generateOtp = (email) => {
+  const otp = Math.floor(100000 + Math.random() * 900000);
+  const ttl = 5 * 60 * 1000;
+  const expires = Date.now() + ttl;
+  const hash = generateOtpHash(email, otp, expires);
+  const fullHash = `${hash}.${expires}`;
+
+  return {
+    otp,
+    fullHash,
+  };
+};
+
+
+const transport = nodemailer.createTransport({
+  host,
+  port: 587,
+  auth: {
+    user: userhost,
+    pass: passhost,
+  },
+});
+
+transport
+  .verify()
+  .then(() => console.log("Connected to email server"))
+
+const aVeryLongSafeString =
+  "874410ea46e7a92edcffd67911d1819c3d36ab93f00cc3de6f05ade3083a89a316f8d3207d86518f72f845a2ff771a92b98ef6fb233e48391b654240219b45ec";
+
+const generateOtpHash = (email, otp, expires) => {
+  const data = `${email}.${otp}.${expires}`;
+  return createHmac("sha256", aVeryLongSafeString).update(data).digest("hex");
+};
+
+const verifyOtp = (hash, email, otp) => {
+  const [hashValue, expires] = hash.split(".");
+  const now = Date.now();
+
+  if (now > parseInt(expires, 10)) {
+    return {
+      error: "OTP Expired",
+    };
+  }
+
+  const expiresAt = Number(expires);
+
+  const newCalculatedHash = generateOtpHash(email, otp, expiresAt);
+  if (newCalculatedHash !== hashValue) {
+    return {
+      error: "Incorrect OTP",
+    };
+  }
+};
 
 // Configure Passport
 require("./passport-config")(passport);
@@ -250,7 +306,7 @@ app.get("/logout", (req, res) => {
 });
 
 //email-auth
-const otp = Math.floor(100000 + Math.random() * 900000);
+
 app.post("/send-email", async (req, res) => {
   try {
     // Generate a random OTP (e.g., a 6-digit number)
@@ -334,7 +390,7 @@ app.post("/validate-otp", (req, res) => {
   }
 });
 
-/* */
+
 app.get("/forgot-password", (req, res) => {
   console.log("req.query.from",req.query.from)
   if(req.query.from==="invalidemail"){
@@ -415,63 +471,7 @@ app.post("/forgot-password", async (req, res) => {
   res.redirect(`/reset-password?email=${email}`);
 });
 
-const generateOtp = (email) => {
-  const otp = Math.floor(100000 + Math.random() * 900000);
-  const ttl = 5 * 60 * 1000;
-  const expires = Date.now() + ttl;
-  const hash = generateOtpHash(email, otp, expires);
-  const fullHash = `${hash}.${expires}`;
 
-  return {
-    otp,
-    fullHash,
-  };
-};
-
-const host = "smtp.gmail.com";
-const userhost = "sivaram@codegnan.com";
-const passhost = "iqhakdyilcqvbojb";
-
-const transport = nodemailer.createTransport({
-  host,
-  port: 587,
-  auth: {
-    user: userhost,
-    pass: passhost,
-  },
-});
-
-transport
-  .verify()
-  .then(() => console.log("Connected to email server"))
-
-const aVeryLongSafeString =
-  "874410ea46e7a92edcffd67911d1819c3d36ab93f00cc3de6f05ade3083a89a316f8d3207d86518f72f845a2ff771a92b98ef6fb233e48391b654240219b45ec";
-
-const generateOtpHash = (email, otp, expires) => {
-  const data = `${email}.${otp}.${expires}`;
-  return createHmac("sha256", aVeryLongSafeString).update(data).digest("hex");
-};
-
-const verifyOtp = (hash, email, otp) => {
-  const [hashValue, expires] = hash.split(".");
-  const now = Date.now();
-
-  if (now > parseInt(expires, 10)) {
-    return {
-      error: "OTP Expired",
-    };
-  }
-
-  const expiresAt = Number(expires);
-
-  const newCalculatedHash = generateOtpHash(email, otp, expiresAt);
-  if (newCalculatedHash !== hashValue) {
-    return {
-      error: "Incorrect OTP",
-    };
-  }
-};
 
 app.get("/reset-password", (req, res) => {
   const { email } = req.query;
@@ -505,6 +505,9 @@ app.post("/reset-password", async (req, res) => {
   res.redirect("/login?from=reset");
 });
 /* */
+
+
+
 
 // Define Port for Application
 const port = 8080;
