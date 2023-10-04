@@ -355,7 +355,8 @@
                     // Regular expressions for validation
                     var nameRegex = /^[A-Za-z\s]+$/;
                     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-                    var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,8}$/;
+                    var passwordRegex = /^(?!.*\s)[@$#-._a-zA-Z\d]{8,}$/;
+
                     var phoneRegex = /^\d{10}$/;
                     // Clear previous error messages
                     document.getElementById("nameError").innerText = "";
@@ -378,7 +379,7 @@
 
                     // Validate password
                     if (!password.match(passwordRegex)) {
-                        document.getElementById("passwordError").innerText = "Please enter a valid password (at least 6 characters, including one uppercase letter, one lowercase letter, and one digit).";
+                        document.getElementById("passwordError").innerText = "Please enter a valid password (at least 8 characters needed).";
                         return false;
                     }
 
@@ -403,7 +404,7 @@
             </script>
             <script>
                 $(document).ready(function () {
-                    if('<%= toastrErrorMessage %>' === "Login failed") {
+                    if('<%= toastrErrorMessage %>' === "Login failed due to invalid credentials") {
                         toastr.warning('<%= toastrErrorMessage %>');
                     }
                     else {

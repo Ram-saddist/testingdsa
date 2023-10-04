@@ -233,7 +233,7 @@ app.get("/login", (req, res) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/?from=login",
     failureRedirect: "/signup?from=login",
     failureFlash: true,
   })
@@ -258,8 +258,8 @@ app.post("/send-email", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "raghuveer@codegnan.com", // Your Gmail email address
-        pass: "dfkofuklqzcgxbzo", // Your Gmail password
+        user: "sivaram@codegnan.com", // Your Gmail email address
+        pass: "iqhakdyilcqvbojb", // Your Gmail password
       },
     });
     const text=`
@@ -305,7 +305,7 @@ app.post("/send-email", async (req, res) => {
     </html>
       `
     const mailOptions = {
-      from: "raghuveer@codegnan.com", // Sender address
+      from: "sivaram@codegnan.com", // Sender address
       to: email, // Recipient address
       subject: "Registration Confirmation", // Subject line
       html:text
@@ -401,7 +401,7 @@ app.post("/forgot-password", async (req, res) => {
     </html>              
     `;
 
-    const msg = { from: "max@arleven.com", to: email, subject, html:text };
+    const msg = { from: "sivaram@codegnan.com", to: email, subject, html:text };
     await transport.sendMail(msg);
   } catch (error) {
   }
@@ -429,8 +429,8 @@ const generateOtp = (email) => {
 };
 
 const host = "smtp.gmail.com";
-const userhost = "raghuveer@codegnan.com";
-const passhost = "dfkofuklqzcgxbzo";
+const userhost = "sivaram@codegnan.com";
+const passhost = "iqhakdyilcqvbojb";
 
 const transport = nodemailer.createTransport({
   host,
