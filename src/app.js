@@ -506,7 +506,13 @@ app.post("/reset-password", async (req, res) => {
 });
 /* */
 
-
+app.get("/dashboard",isLoggedIn,async (req,res)=>{
+  const bookings = await bookCollection.find();
+  res.render("dashboard", {
+    user: res.locals.user,
+    bookings
+  });
+})
 
 
 // Define Port for Application

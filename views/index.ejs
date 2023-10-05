@@ -130,10 +130,15 @@
         <!-- Spinner End -->
 
         <% if (user) { %>
-            <%- include('navbarlogout.ejs') %>
-                <% } else { %>
-                    <%- include('navbar.ejs') %>
-                        <% } %>
+            <% if (user.email === 'sivaram@codegnan.com') { %>
+              <%- include('adminnavbar.ejs') %>
+            <% } else { %>
+              <%- include('navbarlogout.ejs') %>
+            <% } %>
+          <% } else { %>
+            <%- include('navbar.ejs') %>
+          <% } %>
+        
     </div>
 
 
